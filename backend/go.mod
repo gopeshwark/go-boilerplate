@@ -56,6 +56,7 @@ require (
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/newrelic/go-agent/v3/integrations/nrpgx5 v1.3.2
+	github.com/newrelic/go-agent/v3/integrations/nrredis-v9 v1.1.2
 	github.com/resend/resend-go/v2 v2.26.0
 	github.com/rs/zerolog v1.34.0
 )
