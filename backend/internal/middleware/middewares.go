@@ -13,7 +13,7 @@ type Middlewares struct {
 	RateLimit       *RateLimitMiddleware
 }
 
-func NewMiddleware(s *server.Server) *Middlewares {
+func NewMiddlewares(s *server.Server) *Middlewares {
 	// Get New Relic application instances from server
 	var nrApp *newrelic.Application
 	if s.LoggerService != nil {

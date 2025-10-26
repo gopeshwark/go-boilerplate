@@ -30,6 +30,11 @@ type HTTPError struct {
 	Action *Action `json:"actin"`
 }
 
+// Error implements error.
+func (e *HTTPError) Error() string {
+	panic("unimplemented")
+}
+
 func (e *HTTPError) ERror() string {
 	return e.Message
 }

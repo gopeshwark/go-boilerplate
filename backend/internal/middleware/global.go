@@ -1,12 +1,12 @@
 package middleware
 
 import (
-	"errors"
 	"net/http"
 
 	"github.com/gopeshwark/go-boilerplate/internal/server"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 	"guthub.com/gopeshwark/go-boilerplate/internal/errs"
 	"guthub.com/gopeshwark/go-boilerplate/internal/sqlerr"

@@ -8,9 +8,9 @@ import (
 	"time"
 
 	loggerPkg "github.com/gopeshwark/go-boilerplate/internal/logger"
-	zerolog "github.com/jackc/pgx-zerolog"
 	"github.com/newrelic/go-agent/v3/integrations/nrredis-v9"
 	"github.com/redis/go-redis/v9"
+	zerolog "github.com/rs/zerolog"
 	"guthub.com/gopeshwark/go-boilerplate/internal/config"
 	"guthub.com/gopeshwark/go-boilerplate/internal/database"
 	"guthub.com/gopeshwark/go-boilerplate/internal/lib/job"
@@ -52,8 +52,8 @@ func New(cfg *config.Config, logger *zerolog.Logger, loggerService *loggerPkg.Lo
 	}
 
 	// job service
-	jobservice := job.NewJobService(logger, cfg)
-	jobservice.InitHandlers(cfg, logger)
+	jobService := job.NewJobService(logger, cfg)
+	jobService.InitHandlers(cfg, logger)
 
 	// Start job server
 	if err := jobService.Start(); err != nil {
@@ -66,7 +66,7 @@ func New(cfg *config.Config, logger *zerolog.Logger, loggerService *loggerPkg.Lo
 		LoggerService: loggerService,
 		DB:            db,
 		Redis:         redisClient,
-		Job:           jobservice,
+		Job:           jobService,
 	}
 
 	// Start metrics collection
@@ -100,7 +100,7 @@ func (s *Server) Shutdown(ctx context.Context) error {
 		return fmt.Errorf("failed to shutdown HTTP server: %w", err)
 	}
 
-	if err := s, DB.Close(); err != nil {
+	if err := s.DB.Close(); err != nil {
 		return fmt.Errorf("failed to close database connection: %w", err)
 	}
 
